@@ -11,6 +11,7 @@ import time
 
 # 生成二维码函数，传入信息参数
 def qc(info):
+    qrcode_name = info["name"] + "_" + str(time.time())
     # 创建qrcode对象
     qr = qrcode.QRCode(
         version=1,   # version为一个整数，范围1~40，作用表示二维码的大小
@@ -30,7 +31,7 @@ def qc(info):
     w = int((img_w-logo_w)/2)
     h = int((img_h-logo_h)/2)
     img.paste(logo, (w, h))
-    path = "static/qrcode/%s.png" % time.time()
+    path = "static/qrcode/%s.png" % qrcode_name
     img.save(path)  # 保存图片
     return path
 
